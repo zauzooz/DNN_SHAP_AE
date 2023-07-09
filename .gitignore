@@ -1,0 +1,4 @@
+Edge-IIoTset/
+preprocessed_dataset/
+var/DNN/*
+var/ML/*
