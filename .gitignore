@@ -2,3 +2,7 @@ Edge-IIoTset/
 preprocessed_dataset/
 var/DNN/*
 var/ML/*
+NF-ToN-IoT/*
+NF-BoT-IoT/*
+NF-CSE-CIC-IDS2018/*
+NF-UNSW-NB15/*
