@@ -17,7 +17,6 @@ def generate_defense_set(
     selected_features: list,
     shap_importance_feature_values: list,
     top_n_features: int = 10,
-    random_mode: bool = False
 ):    
     n_selected_features = selected_features[:top_n_features]
     values = shap_importance_feature_values[:top_n_features]
