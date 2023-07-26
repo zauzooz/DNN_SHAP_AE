@@ -11,7 +11,7 @@ def generate_defense_set(
     clean: pd.DataFrame,
     fsgm: pd.DataFrame,
     bim: pd.DataFrame,
-    cw_l2: pd.DataFrame,
+    # cw_l2: pd.DataFrame,
     jsma: pd.DataFrame,
     deepfool: pd.DataFrame,
     selected_features: list,
@@ -24,7 +24,7 @@ def generate_defense_set(
         clean[n_selected_features],
         fsgm[n_selected_features],
         bim[n_selected_features],
-        cw_l2[n_selected_features],
+        # cw_l2[n_selected_features],
         jsma[n_selected_features],
         deepfool[n_selected_features]
         ]
@@ -49,7 +49,7 @@ def generate_testset(classifier, test_samples: pd.DataFrame, y_test_samples: pd.
         "Normal": None,
         "FSGM": FastGradientMethod(estimator=classifier, eps=0.2),
         "BIM": BasicIterativeMethod(estimator=classifier, eps=0.2, max_iter=100, batch_size=32),
-        "CW-L2": CarliniL2Method(classifier=classifier, max_iter=10),
+        # "CW-L2": CarliniL2Method(classifier=classifier, max_iter=10),
         "JSMA": SaliencyMapMethod(classifier=classifier,theta=0.1,gamma=1, batch_size=1),
         "DeepFool": DeepFool(classifier=classifier, max_iter=100, epsilon=0.000001, nb_grads=10, batch_size=1),
     }
@@ -58,15 +58,11 @@ def generate_testset(classifier, test_samples: pd.DataFrame, y_test_samples: pd.
     
     alg_namelist = list(adversarial_algs.keys())
     
-    random.seed(42)
+    np.random.seed(142)
     
     for i in range(len(return_df)):
-        if len(alg_namelist) == 0:
-            alg_namelist = list(adversarial_algs.keys())
-        random.shuffle(alg_namelist)
-        alg = random.choice(alg_namelist)
-        alg_namelist.remove(alg)
-        print(f"alg {alg}")
+        alg = np.random.choice(alg_namelist, p=[0.5,0.1,0.1,0.1,0.1,0.1])
+        print(f"[{i}] alg {alg}")
         if alg != "Normal":
             ex = return_df[i]
             ex = ex.reshape(1,ex.shape[0])
