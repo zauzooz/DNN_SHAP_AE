@@ -61,7 +61,7 @@ def generate_testset(classifier, test_samples: pd.DataFrame, y_test_samples: pd.
     np.random.seed(142)
     
     for i in range(len(return_df)):
-        alg = np.random.choice(alg_namelist, p=[0.5,0.1,0.1,0.1,0.1,0.1])
+        alg = np.random.choice(alg_namelist, p=[0.5,0.25,0.25,0.25,0.25])
         print(f"[{i}] alg {alg}")
         if alg != "Normal":
             ex = return_df[i]
